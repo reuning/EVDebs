@@ -1,0 +1,52 @@
+State_Ab,State_Name,State_FIPS,State_ICPSR
+AK,Alaska,2,81
+AL,Alabama,1,41
+AR,Arkansas,5,42
+AZ,Arizona,4,61
+CA,California,6,71
+CO,Colorado,8,62
+CT,Connecticut,9,1
+DC,"Washington, DC",11,55
+DE,Delaware,10,11
+FL,Florida,12,43
+GA,Georgia,13,44
+HI,Hawaii,15,82
+IA,Iowa,19,31
+ID,Idaho,16,63
+IL,Illinois,17,21
+IN,Indiana,18,22
+KS,Kansas,20,32
+KY,Kentucky,21,51
+LA,Louisiana,22,45
+MA,Massachusetts,25,3
+MD,Maryland,24,52
+ME,Maine,23,2
+MI,Michigan,26,23
+MN,Minnesota,27,33
+MO,Missouri,29,34
+MS,Mississippi,28,46
+MT,Montana,30,64
+NC,North Carolina,37,47
+ND,North Dakota,38,36
+NE,Nebraska,31,35
+NH,New Hampshire,33,4
+NJ,New Jersey,34,12
+NM,New Mexico,35,66
+NV,Nevada,32,65
+NY,New York,36,13
+OH,Ohio,39,24
+OK,Oklahoma,40,53
+OR,Oregon,41,72
+PA,Pennsylvania,42,14
+RI,Rhode Island,44,5
+SC,South Carolina,45,48
+SD,South Dakota,46,37
+TN,Tennessee,47,54
+TX,Texas,48,49
+UT,Utah,49,67
+VA,Virginia,51,40
+VT,Vermont,50,6
+WA,Washington,53,73
+WI,Wisconsin,55,25
+WV,West Virginia,54,56
+WY,Wyoming,56,68
