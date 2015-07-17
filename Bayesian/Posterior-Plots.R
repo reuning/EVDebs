@@ -8,9 +8,11 @@ post.plot <- function(posterior, param.to.plot=colnames(posterior),
   #   Param.to.plot is used to select the parameters to plot, defaults to all. 
   #   param.n is the names used 
   #   xmax, xmin, ymin and max are used for plotting, min and max of axes
-  #   ab - do you want an ab line at 0
+  #   ab = number or F, if number it is the position of the abline. 
   #   y.lab - do you want the y axis to have labels
-  #   p.dens - do you want to plot the density of the posteriors
+  #   p.dens = T/F - Plot densities of posteriors. They are all scaled to prevent overlap.
+  #   You can run it by using source_url from the devtools library.
+  #   source_url("https://github.com/reuning/EVDebs/blob/master/Bayesian/Posterior-Plots.R")
   
   par(...)
   plot.new()
