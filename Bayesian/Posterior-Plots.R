@@ -30,7 +30,9 @@ post.plot <- function(posterior, param=NULL,
   	}
   return(tmp.post)
   }
+
   plot.ci <- function(tmp, p.dens.tmp, y.adj=0, id.lines.tmp=F, type=1){
+	### Function used to plot CI 
     points(y=ii+y.adj, x=mean(tmp))
     ci <- quantile(tmp, c(0.025, .975))
     lines(y=c(ii+y.adj,ii+y.adj), x=ci, lwd=2, lty=type)
@@ -85,7 +87,14 @@ post.plot <- function(posterior, param=NULL,
   par(...)
   plot.new()
   plot.window(xlim=c(xmin, xmax),ylim=c(ymin, ymax))
-  conv <- 1/(1.2*max(apply(posterior[,param], 2, function(ii) max(density(ii)$y))))
+  if(add.n == 0){
+      conv <- 1/(1.05*max(apply(posterior[,param], 2, function(ii) max(density(ii)$y))))
+  } else if(add.n==1){
+  	conv <- .9/(1.05*max(apply(posterior[,param], 2, function(ii) max(density(ii)$y))))
+  } else {
+      conv <- .8/(1.05*max(apply(posterior[,param], 2, function(ii) max(density(ii)$y))))
+  }
+
   if(order.t){
     od <- order(apply(posterior[,param], 2, mean))
   } else { od <- length(param):1 }
@@ -94,11 +103,11 @@ post.plot <- function(posterior, param=NULL,
     plot.ci(tmp, p.dens.tmp=p.dens, id.lines.tmp=id.lines)
     if(add.n>0){
 	tmp.add <- pr.post1[,param[od[ii]]]
-      plot.ci(tmp.add, p.dens.tmp=F, y.adj=.1, id.lines.tmp=F, type=2)
+      plot.ci(tmp.add, p.dens.tmp=F, y.adj=-.1, id.lines.tmp=F, type=2)
     }
     if(add.n>1) {
     	tmp.add <- pr.post2[,param[od[ii]]]
-      plot.ci(tmp.add, p.dens.tmp=F, y.adj=-.1, id.lines.tmp=F, type=4)
+      plot.ci(tmp.add, p.dens.tmp=F, y.adj=-.2, id.lines.tmp=F, type=4)
     }
   }
   xlimlo <- floor(xmin)
