@@ -4,8 +4,8 @@ post.plot <- function(posterior, param=NULL,
                       xmin=NULL, 
                       ymin=1, ymax=NULL, ab=0, 
                       y.lab=T, p.dens=T, id.lines=F,
-			    dev = F,
-			    add.post = NULL, ...){
+			                dev = F,
+			                add.post = NULL, ...){
   #   Posterior is the matrix of the posterior (use as.matrix() if it is an mcmc object)
   #   Param.to.plot is used to select the parameters to plot, defaults to all. 
   #   param.n is the names used 
@@ -20,14 +20,17 @@ post.plot <- function(posterior, param=NULL,
   ##### get defaults and convert to useable things ####
 
   convert.post <- function(tmp.post){
+  post.cl <- attributes(tmp.post)$class
+  
 	if(typeof(tmp.post)=="list"){
-		post.cl <- attributes(tmp.post)$class
   		if(post.cl=="rjags") {
-			tmp.post <- as.matrix(as.mcmc(tmp.post))
-		} else if(post.cl=="mcmc.list") {
-			tmp.post <- as.matrix(tmp.post)
+			  tmp.post <- as.matrix(as.mcmc(tmp.post))
+		  } else if(post.cl=="mcmc.list") {
+			  tmp.post <- as.matrix(tmp.post)
+		  }  else stop("Posterior type not recognized, use either a matrix, jags object, mcmc.list or stanfit")
+	  } else if(post.cl[[1]]=="stanfit"){
+        tmp.post <- as.matrix(tmp.post)
 		}
-  	}
   return(tmp.post)
   }
 
@@ -61,14 +64,16 @@ post.plot <- function(posterior, param=NULL,
   
   add.n <- 0
   if(!is.null(add.post)){
-    if(typeof(add.post)=="list"){
-       if(is.null(attr(add.post, "class"))){
-		#### this is a clean list ###
-		add.n <- length(add.post)
-		if(add.n == 1) pr.post1 <- convert.post(add.post)
-		else if(add.n == 2){
-			pr.post1 <- convert.post(add.post[[1]])
-			pr.post2 <- convert.post(add.post[[2]])
+    if(typeof(add.post)=="list"|typeof(add.post)=="S4"){
+      if(is.null(attr(add.post, "class"))){
+		    #### this is a clean list ###
+		    add.n <- length(add.post)
+        
+        if(add.n == 1){
+		      pr.post1 <- convert.post(add.post)
+		    } else if(add.n == 2){
+			    pr.post1 <- convert.post(add.post[[1]])
+			    pr.post2 <- convert.post(add.post[[2]])
             } 
 		if(add.n > 2) stop ("Only two additional posteriors can be added") 
 	} else {
