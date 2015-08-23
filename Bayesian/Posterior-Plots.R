@@ -108,11 +108,11 @@ post.plot <- function(posterior, param=NULL,
     plot.ci(tmp, p.dens.tmp=p.dens, id.lines.tmp=id.lines)
     if(add.n>0){
 	tmp.add <- pr.post1[,param[od[ii]]]
-      plot.ci(tmp.add, p.dens.tmp=F, y.adj=-.1, id.lines.tmp=F, type=2)
+      plot.ci(tmp.add, p.dens.tmp=F, y.adj=-.15, id.lines.tmp=F, type=2)
     }
     if(add.n>1) {
     	tmp.add <- pr.post2[,param[od[ii]]]
-      plot.ci(tmp.add, p.dens.tmp=F, y.adj=-.2, id.lines.tmp=F, type=4)
+      plot.ci(tmp.add, p.dens.tmp=F, y.adj=-.3, id.lines.tmp=F, type=4)
     }
   }
   xlimlo <- floor(xmin)
