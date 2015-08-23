@@ -1,4 +1,5 @@
 vplot <- function(y=NULL,x=NULL, data=NULL){
+  if(is.null(y)) break("Must provide a y value")
   if(!is.null(data)){
     arguments <- as.list(match.call())
     x <- eval(arguments$x, data)
@@ -6,13 +7,15 @@ vplot <- function(y=NULL,x=NULL, data=NULL){
   }
   
   if(is.null(x)){
-    plot.new()
-    plot.window(xli=c(0, 2),ylim=c(min(y, na.rm=T), max(y, na.rm=T)))
     dens <- density(y, na.rm=T)
-    lines(x=1+dens$y, y=dens$x)
-    ines(x=1-dens$y, y=dens$x)
-    axis(1)
+    
+    plot.new()
+    plot.window(xlim=c(-max(dens$y)*1.2, max(dens$y)*1.2 ),ylim=c(min(dens$x), max(dens$y)))
+    lines(x=dens$y, y=dens$x)
+    ines(x=dens$y, y=dens$x)
+    axis(1, at=c(-max(dens$y)*1.2, max(dens$y)*1.2 ), labels=c("",""), lwd.ticks=0, line=1)
     axis(2)
+    box(lwd=.1, col="gray")
   } else {
     fact <- as.factor(x)
     numb <- length(levels(fact))
