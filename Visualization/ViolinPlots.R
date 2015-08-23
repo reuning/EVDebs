@@ -12,7 +12,7 @@ vplot <- function(y=NULL,x=NULL, data=NULL){
     plot.new()
     plot.window(xlim=c(-max(dens$y)*1.2, max(dens$y)*1.2 ),ylim=c(min(dens$x), max(dens$y)))
     lines(x=dens$y, y=dens$x)
-    ines(x=dens$y, y=dens$x)
+    lines(x=dens$y, y=dens$x)
     axis(1, at=c(-max(dens$y)*1.2, max(dens$y)*1.2 ), labels=c("",""), lwd.ticks=0, line=1)
     axis(2)
     box(lwd=.1, col="gray")
