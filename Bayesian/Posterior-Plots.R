@@ -54,7 +54,15 @@ post.plot <- function(posterior, param=NULL,
 	if(!dev & ("deviance" %in% param)){
 		param <- param[-which("deviance"==param)]
 	}
-  }
+  } else {
+	tmp.param <- character()
+	for(ii in 1:length(param)){
+		tmp <- grep(param[ii], colnames(posterior), value=T, fixed=T)
+		tmp.param <- append(tmp, tmp.param)
+		rm(tmp)
+	}
+	param <- rev(unique(tmp.param))
+  }	
   if(is.null(param.n)){
 	param.n <- param
   }
